@@ -84,6 +84,8 @@ async function consultar() {
         let item = dados.find(x => 
             (x.placa && x.placa.toUpperCase() === chave) ||
             (x.cpf && x.cpf === chave)
+            (x.produto && x.produto === chave)
+            (x.tipo && x.tipo === chave)
         );
 
         if (!item) {
