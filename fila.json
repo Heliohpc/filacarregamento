@@ -1,30 +1,44 @@
 [
   {
     "posicao": 1,
-    "placa": "OQT0505"
+    "placa": "OQT0505",
+    "produto": "GRANEL",
+    "tipo": "FOB"
   },
   {
     "posicao": 2,
-    "placa": "RNO0A19"
+    "placa": "RNO0A19",
+    "produto": "GRANEL",
+    "tipo": "FOB"
   },
   {
     "posicao": 1,
-    "placa": "SFT0B40"
+    "placa": "SFT0B40",
+    "produto": "Cimento ensacado",
+    "tipo": "FOB (1)"
   },
   {
     "posicao": 2,
-    "placa": "SXI9B99"
+    "placa": "SXI9B99",
+    "produto": "Cimento ensacado",
+    "tipo": "FOB (2)"
   },
   {
     "posicao": 3,
-    "placa": "SFT0G78"
+    "placa": "SFT0G78",
+    "produto": "Cimento ensacado",
+    "tipo": "FOB (3)"
   },
   {
     "posicao": 4,
-    "placa": "RHK2B08"
+    "placa": "RHK2B08",
+    "produto": "Cimento ensacado",
+    "tipo": "FOB (4)"
   },
   {
     "posicao": 5,
-    "placa": "EVU3432"
+    "placa": "EVU3432",
+    "produto": "Cimento ensacado",
+    "tipo": "FOB (5)"
   }
 ]
