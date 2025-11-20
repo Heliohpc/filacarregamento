@@ -62,14 +62,15 @@
 
 <div class="container">
     <h2>Consulta de Fila</h2>
-    <p>Digite sua <b>placa</b>:</p>
-    
+    <p>Digite sua <b>placa</b> :</p>
+
+    <input id="txt" placeholder="Ex: ABC1234" />
+
     <button onclick="consultar()">Consultar</button>
 
     <p id="resultado"></p>
 </div>
-
-
+    
 <script>
 async function consultar() {
     document.getElementById("resultado").innerText = "Consultando...";
