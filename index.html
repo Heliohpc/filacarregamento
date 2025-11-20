@@ -2,85 +2,35 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Consulta de Fila de Carregamento</title>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background: #f2f2f2;
-    padding: 20px;
-}
-.container {
-    max-width: 600px;
-    margin: auto;
-}
-.card {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 12px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-.titulo {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-}
-.info {
-    margin: 5px 0;
-}
-.footer {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 13px;
-    color: #555;
-}
-</style>
+<title>Consulta Fila</title>
 </head>
 <body>
+<h2>Consulta de posição na fila</h2>
 
-<div class="container">
-    <div class="titulo">📦 Consulta de Fila de Carregamento</div>
+<input id="txt" placeholder="Digite a placa ou CPF">
+<button onclick="consultar()">Consultar</button>
 
-    <div id="conteudo">
-        Carregando informações...
-    </div>
-
-    <div class="footer">
-        Página atualiza automaticamente.<br>
-        Atualizado com base no último envio interno.
-    </div>
-</div>
+<p id="resultado"></p>
 
 <script>
-// Força sempre pegar o arquivo atualizado
-fetch("fila.json?cache=" + Date.now())
-  .then(r => r.json())
-  .then(data => {
-      if (data.length === 0) {
-        document.getElementById("conteudo").innerHTML =
-          "<p>Nenhum veículo na fila no momento.</p>";
+async function consultar() {
+    const res = await fetch("https://seuusuario.github.io/seurepo/fila.json?nocache=" + Date.now());
+    const dados = await res.json();
+
+    let chave = document.getElementById("txt").value.trim().toUpperCase();
+
+    let item = dados.find(x => x.placa === chave || x.cpf === chave);
+
+    if (!item) {
+        document.getElementById("resultado").innerText = "Não encontrado";
         return;
-      }
+    }
 
-      let html = "";
+    let posicao = dados.indexOf(item) + 1;
 
-      data.forEach(item => {
-         html += `
-           <div class="card">
-             <div class="info"><b>Posição:</b> ${item.posicao}</div>
-             <div class="info"><b>Placa:</b> ${item.placa}</div>
-             <div class="info"><b>Atualizado:</b> ${item.atualizado}</div>
-           </div>
-         `;
-      });
-
-      document.getElementById("conteudo").innerHTML = html;
-  })
-  .catch(err => {
-    document.getElementById("conteudo").innerHTML =
-      "<p>Erro ao carregar a fila.</p>";
-  });
+    document.getElementById("resultado").innerText =
+        "Sua posição na fila: " + posicao;
+}
 </script>
 
 </body>
