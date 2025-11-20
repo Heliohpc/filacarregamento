@@ -81,23 +81,21 @@ async function consultar() {
 
         let chave = document.getElementById("txt").value.trim().toUpperCase();
 
-        let item = dados.find(x => 
-            (x.placa && x.placa.toUpperCase() === chave) ||
-            (x.cpf && x.cpf === chave)
-            (x.produto && x.produto === chave)
-            (x.tipo && x.tipo === chave)
-        );
+        // Buscar SOMENTE pela placa
+        let item = dados.find(x => x.placa && x.placa.toUpperCase() === chave);
 
         if (!item) {
-            document.getElementById("resultado").innerText = "Não encontrado na fila.";
+            document.getElementById("resultado").innerText = "Placa não encontrada na fila.";
             return;
         }
 
         let pos = dados.indexOf(item) + 1;
 
         document.getElementById("resultado").innerHTML =
-            "🚚 Sua posição na fila: <br><br><span style='font-size:28px; color:#007bff;'>" + pos + "</span>";
-
+            `🚚 <b>Posição na fila:</b> <span style='font-size:26px; color:#007bff;'>${pos}</span><br><br>
+             📦 <b>Produto:</b> ${item.produto}<br>
+             🏷️ <b>Tipo:</b> ${item.tipo}`;
+            
     } catch (e) {
         document.getElementById("resultado").innerText = "Erro ao acessar dados.";
     }
